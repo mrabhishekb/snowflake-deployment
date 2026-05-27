@@ -6,7 +6,7 @@ tags:
   - data-movement
 spec:
   runAsUser: "abhishekbharadwajtmdcio"
-  compute: ct-sandbox
+  compute: ct-sandbox-compute
   engine: snowflake
   repo:
     url: https://github.com/mrabhishekb/snowflake-deployment
