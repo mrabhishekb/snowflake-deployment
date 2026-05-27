@@ -9,11 +9,10 @@ spec:
   compute: ct-sandbox
   engine: snowflake
   repo:
-    url: https://bitbucket.org/rubik_/queries
+    url: https://github.com/mrabhishekb/snowflake-deployment
     syncFlags:
-      - "--ref=dj-development"
       - "--submodules=off"
-    baseDir: queries/deepak_jaiswal/otis2.0/pricing/dp_2.0_v2/vulcan_demo_project
+    baseDir: snowflake-deployment/vulcan_demo_project
     secret: ct-sandbox:queries-repo-access
   depots:
     - dataos://sfsampledatasetdepot?purpose=rw
