@@ -1,26 +1,16 @@
+vde: false
 name: sf-data-movement-workflow
 display_name: sfdatamovementworkflow
-tenant: ct-sandbox
+discoverable: true
+version: 0.1.2
 description: Data product designed to analyze pricing effectiveness, contract performance, and sales revenue trends using Snowflake-based analytics models.
+domain: elevator_crm_analytics
 
 tags:
   - snowflake
 
 terms:
   - glossary.data_product
-
-metadata:
-  domain: elevator_crm_analytics
-  use_cases:
-    - Account and portfolio management analysis
-    - Elevator unit fleet monitoring and capacity planning
-    - Service contract performance and revenue tracking
-    - Service ticket trend analysis and SLA compliance
-  limitations:
-    - Data available from 2025 onwards
-    - Refreshes daily at midnight UTC
-    - Source data limited to SALES_SCHEMA tables only
-
 
 gateways:
   default:
