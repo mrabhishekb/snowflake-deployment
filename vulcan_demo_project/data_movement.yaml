@@ -13,7 +13,7 @@ spec:
     syncFlags:
       - "--submodules=off"
     baseDir: snowflake-deployment/vulcan_demo_project
-    secret: ct-sandbox:queries-repo-access
+    secret: ct-sandbox:git-sync-mrab
   depots:
     - dataos://sfsampledatasetdepot?purpose=rw
   workflow:
