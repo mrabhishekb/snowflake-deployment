@@ -1,0 +1,23 @@
+models:
+  SAMPLE_DATASET.DP_DATASETS.LINEITEM:
+    alias: lineitem
+
+    dimensions:
+      includes:
+        - ORDER_NUMBER
+        - PART_NUMBER
+        - SUPPLIER_NUMBER
+        - LINE_NUMBER
+        - LINE_STATUS
+        - RETURN_FLAG
+
+    measures:
+      total_extended_price:
+        type: sum
+        expression: "{lineitem.EXTENDED_PRICE}"
+        description: "Sum of extended line item prices"
+
+      total_quantity:
+        type: sum
+        expression: "{lineitem.QUANTITY}"
+        description: "Total quantity across line items"

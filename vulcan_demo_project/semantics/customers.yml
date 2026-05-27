@@ -1,0 +1,21 @@
+models:
+  SAMPLE_DATASET.DP_DATASETS.CUSTOMER:
+    alias: customer
+
+    dimensions:
+      includes:
+        - CUSTOMER_NUMBER
+        - CUSTOMER_NAME
+        - CUSTOMER_MARKET_SEGMENT
+        - CUSTOMER_NATIONKEY
+
+    measures:
+      total_account_balance:
+        type: sum
+        expression: "{customer.CUSTOMER_ACCOUNT_BALANCE}"
+        description: "Sum of customer account balances"
+
+      avg_account_balance:
+        type: avg
+        expression: "{customer.CUSTOMER_ACCOUNT_BALANCE}"
+        description: "Average customer account balance"

@@ -1,0 +1,23 @@
+checks:
+  SAMPLE_DATASET.DP_DATASETS.CUSTOMER:
+    completeness:
+      - missing_count(CUSTOMER_NUMBER) = 0:
+          name: customer_number_not_null
+          attributes:
+            description: "Customer number must not be null"
+
+      - row_count > 0:
+          name: has_rows
+          attributes:
+            description: "Customer model must have at least one row"
+
+    validity:
+      - failed rows:
+          name: positive_customer_number
+          fail query: |
+            SELECT CUSTOMER_NUMBER
+            FROM SAMPLE_DATASET.DP_DATASETS.CUSTOMER
+            WHERE CUSTOMER_NUMBER <= 0
+          samples limit: 10
+          attributes:
+            description: "Customer number must be positive"

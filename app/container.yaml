@@ -1,0 +1,63 @@
+version: v1alpha
+type: app
+name: fancy-text-app
+title: Fancy Text App
+description: App to display fancy text
+owner: aishwaryasharmatmdcio
+tags:
+  - app
+  - streamlit
+spec:
+  compute: ct-sandbox
+  runAsUser: aishwaryasharmatmdcio
+  logLevel: INFO
+  replicas: 1
+  resources:
+    requests:
+      cpu: 250m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+  service:
+    type: streamlit #Confusion
+    image: tmdcio/obsolescence_dashboard:0.001
+    imagePullSecret: docker-image-pull-secret
+    command:
+      - streamlit
+    arguments:
+      - run
+      - app.py
+      - --server.port=8501
+      - --server.address=0.0.0.0
+      - --server.headless=true
+      - --browser.gatherUsageStats=false
+    port: 8501
+    envs: {}
+    hostname: fancytextapp
+    stateful: false
+    http:
+      stripPath: true
+      path: /fancytextapp
+      ingress:
+        enabled: true
+        stripPath: true
+        appDetailSpec: fancy-text-app
+  app:
+    icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDY0IDY0Ij4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwMGY1ZmYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDA5NmZmIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGZpbHRlciBpZD0ic2hhZG93IiB4PSItNTAlIiB5PSItNTAlIiB3aWR0aD0iMjAwJSIgaGVpZ2h0PSIyMDAlIj4KICAgICAgPGZlRHJvcFNoYWRvdyBkeD0iMCIgZHk9IjQiIHN0ZERldmlhdGlvbj0iNCIgZmxvb2QtY29sb3I9IiMwMDAiIGZsb29kLW9wYWNpdHk9IjAuMyIvPgogICAgPC9maWx0ZXI+CiAgPC9kZWZzPgoKICA8cmVjdCB4PSI4IiB5PSI4IiByeD0iMTYiIHJ5PSIxNiIgd2lkdGg9IjQ4IiBoZWlnaHQ9IjQ4IiBmaWxsPSJ1cmwoI2cpIiBmaWx0ZXI9InVybCgjc2hhZG93KSIvPgoKICA8cGF0aCBkPSJNMjAgNDQgVjIwIEwyMCA0NCBMNDQgMjAgVjQ0IiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgoKICA8Y2lyY2xlIGN4PSIzMiIgY3k9IjMyIiByPSIzIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4="
+    domain: platform
+    description: Streamlit app that displays fancy text
+    tags:
+      - app
+      - streamlit
+      - fancy text app
+    owners:
+      - aishwaryasharmatmdcio
+    products:
+      - platform-observability
+    references:
+      - title: Nginx Docs
+        url: https://nginx.org/en/docs/
+    link:
+      title: Open app
+      url: https://saturn-040926.dataos.cloud/fancytextapp

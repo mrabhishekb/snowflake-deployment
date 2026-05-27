@@ -1,0 +1,28 @@
+checks:
+  SAMPLE_DATASET.DP_DATASETS.LINEITEM:
+    completeness:
+      - missing_count(ORDER_NUMBER) = 0:
+          name: order_number_not_null
+          attributes:
+            description: "Order number on line item must not be null"
+
+      - missing_count(LINE_NUMBER) = 0:
+          name: line_number_not_null
+          attributes:
+            description: "Line number must not be null"
+
+      - row_count > 0:
+          name: has_rows
+          attributes:
+            description: "Line item model must have at least one row"
+
+    validity:
+      - failed rows:
+          name: positive_quantity
+          fail query: |
+            SELECT ORDER_NUMBER, LINE_NUMBER, QUANTITY
+            FROM SAMPLE_DATASET.DP_DATASETS.LINEITEM
+            WHERE QUANTITY < 0
+          samples limit: 10
+          attributes:
+            description: "Line item quantity must not be negative"

@@ -1,0 +1,60 @@
+name: sf-data-movement-workflow
+display_name: sfdatamovementworkflow
+tenant: ct-sandbox
+description: Data product designed to analyze pricing effectiveness, contract performance, and sales revenue trends using Snowflake-based analytics models.
+
+tags:
+  - snowflake
+
+terms:
+  - glossary.data_product
+
+metadata:
+  domain: elevator_crm_analytics
+  use_cases:
+    - Account and portfolio management analysis
+    - Elevator unit fleet monitoring and capacity planning
+    - Service contract performance and revenue tracking
+    - Service ticket trend analysis and SLA compliance
+  limitations:
+    - Data available from 2025 onwards
+    - Refreshes daily at midnight UTC
+    - Source data limited to SALES_SCHEMA tables only
+
+
+gateways:
+  default:
+    connection:
+      type: depot
+      address: dataos://sfsampledatasetdepot?purpose=rw
+
+default_gateway: default
+
+model_defaults:
+  dialect: "snowflake"
+  start: "2025-01-01"
+  cron: "@daily"
+
+notification_targets:
+  - type: console
+    notify_on:
+      - apply_start
+      - apply_end
+      - apply_failure
+      - run_start
+      - run_end
+      - run_failure
+      - audit_failure
+      - check_start
+      - check_end
+      - check_failure
+      - migration_start
+      - migration_end
+      - migration_failure
+      - plan_change
+
+users:
+  - username: abhishekbharadwajtmdcio
+    email: abhishekbharadwaj@tmdc.io
+    type: OWNER
+ 

@@ -1,0 +1,63 @@
+version: v1alpha
+type: vulcan
+name: sf-data-movement-workflow
+tags:
+  - snowflake-to-snowflake
+  - data-movement
+spec:
+  runAsUser: "abhishekbharadwajtmdcio"
+  compute: ct-sandbox
+  engine: snowflake
+  repo:
+    url: https://bitbucket.org/rubik_/queries
+    syncFlags:
+      - "--ref=dj-development"
+      - "--submodules=off"
+    baseDir: queries/deepak_jaiswal/otis2.0/pricing/dp_2.0_v2/vulcan_demo_project
+    secret: ct-sandbox:queries-repo-access
+  depots:
+    - dataos://sfsampledatasetdepot?purpose=rw
+  workflow:
+    type: schedule
+    schedule:
+      crons:
+        - "*/60 * * * *"
+      endOn: "2027-01-01T00:00:00-00:00"
+      timezone: "US/Pacific"
+      concurrencyPolicy: Forbid
+    logLevel: INFO
+    resource:
+      request:
+        cpu: "500m"
+        memory: "512Mi"
+      limit:
+        cpu: "1000m"
+        memory: "1Gi"
+    migrate:
+      command:
+        - vulcan
+      arguments:
+        - migrate
+    plan:
+      command:
+        - vulcan
+      arguments:
+        - --log-to-stdout
+        - plan
+        - --auto-apply
+    run:
+      command:
+        - vulcan
+      arguments:
+        - --log-to-stdout
+        - run
+  api:
+    replicas: 1
+    logLevel: INFO
+    resource:
+      request:
+        cpu: "500m"
+        memory: "512Mi"
+      limit:
+        cpu: "1000m"
+        memory: "1Gi"

@@ -1,0 +1,26 @@
+name: sfsampledatasetdepot #does not allow hyphens, special characters, spaces, etc. 48 Char limit
+version: v2alpha
+type: depot
+tags:
+  - snowflake
+  - 2.0 Testing
+owner: aishwaryasharma
+layer: user
+tenant: ct-sandbox
+description: Depot to connect DataOS to Snowflake Sample Dataset Database
+spec:
+  type: snowflake
+  description: Depot to connect DataOS to Snowflake Sample Dataset Database
+  spec:
+    database: "SAMPLE_DATASET"
+    url: "zbjtkef-qo50193.snowflakecomputing.com"
+    warehouse: "COMPUTE_WH"
+    account: "zbjtkef-qo50193"
+    role: "ACCOUNTADMIN"
+  secrets:
+    - id: "ct-sandbox:depot-secrets-user-pass"
+      purpose: rw
+    - id: "ct-sandbox:depot-secrets-user-pass"
+      purpose: scan
+    - id: "ct-sandbox:depot-secrets-user-pass"
+      purpose: query

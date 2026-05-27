@@ -1,0 +1,22 @@
+models:
+  SAMPLE_DATASET.DP_DATASETS.ORDERS:
+    alias: orders
+
+    dimensions:
+      includes:
+        - ORDER_NUMBER
+        - CUSTOMER_NUMBER
+        - ORDER_STATUS
+        - ORDER_PRIORITY
+        - ORDER_DATE
+
+    measures:
+      total_order_value:
+        type: sum
+        expression: "{orders.ORDER_TOTAL_PRICE}"
+        description: "Total order value across all orders"
+
+      avg_order_value:
+        type: avg
+        expression: "{orders.ORDER_TOTAL_PRICE}"
+        description: "Average order total price"

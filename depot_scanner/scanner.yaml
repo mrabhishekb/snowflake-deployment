@@ -1,0 +1,23 @@
+name: hera-ingestion-workflow-test
+version: v1alpha
+type: nilus
+tags:
+  - nilus
+  - hera
+spec:
+  compute: ct-sandbox
+  runAsUser: "aishwaryasharmatmdcio"
+  source:
+    address: "dataos://sfsampledatabasedepot?purpose=scan"
+    options:
+      type: metadata
+      # service-name: snowflakehera01
+      database-filter:
+        includes:
+          - "SNOWFLAKE_SAMPLE_DATA"
+      schema-filter:
+        includes:
+          - "^TPCH_SF1$"
+      # table-filter:
+      #   includes:
+      #     - "SAMP.*"

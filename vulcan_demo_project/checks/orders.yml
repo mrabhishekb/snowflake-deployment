@@ -1,0 +1,28 @@
+checks:
+  SAMPLE_DATASET.DP_DATASETS.ORDERS:
+    completeness:
+      - missing_count(ORDER_NUMBER) = 0:
+          name: order_number_not_null
+          attributes:
+            description: "Order number must not be null"
+
+      - missing_count(CUSTOMER_NUMBER) = 0:
+          name: customer_number_not_null
+          attributes:
+            description: "Customer number on order must not be null"
+
+      - row_count > 0:
+          name: has_rows
+          attributes:
+            description: "Orders model must have at least one row"
+
+    validity:
+      - failed rows:
+          name: positive_order_number
+          fail query: |
+            SELECT ORDER_NUMBER
+            FROM SAMPLE_DATASET.DP_DATASETS.ORDERS
+            WHERE ORDER_NUMBER <= 0
+          samples limit: 10
+          attributes:
+            description: "Order number must be positive"
