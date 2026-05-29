@@ -1,6 +1,6 @@
 version: v1alpha
 type: vulcan
-name: sf-data-movement-workflow
+name: sf-data-movement
 tags:
   - snowflake-to-snowflake
   - data-movement

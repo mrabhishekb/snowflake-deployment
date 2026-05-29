@@ -1,4 +1,4 @@
-name: sf-data-movement-workflow
+name: sf-data-movement
 display_name: sfdatamovementworkflow
 discoverable: true
 version: 0.1.2

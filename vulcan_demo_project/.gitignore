@@ -1,1 +1,4 @@
 .env
+.logs/
+git-sync-secret.yaml
+depot_secrets_mfa.yaml
