@@ -17,7 +17,7 @@ gateways:
       type: depot
       address: dataos://sfsampledatasetdepot?purpose=rw
 
-vde: false
+vde: 0
 
 default_gateway: default
 
