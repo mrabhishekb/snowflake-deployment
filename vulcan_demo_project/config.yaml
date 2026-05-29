@@ -1,4 +1,3 @@
-vde: false
 name: sf-data-movement-workflow
 display_name: sfdatamovementworkflow
 discoverable: true
@@ -17,6 +16,8 @@ gateways:
     connection:
       type: depot
       address: dataos://sfsampledatasetdepot?purpose=rw
+
+vde: false
 
 default_gateway: default
 
